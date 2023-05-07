@@ -26,3 +26,5 @@ override.tf.json
 Исключить 2 файла конфигураций
 .terraformrc
 terraform.rc
+
+новая строчка для ДЗ по гиту 
