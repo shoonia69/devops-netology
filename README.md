@@ -1,76 +1,104 @@
 Задача 1
-Опишите основные преимущества применения на практике IaaC-паттернов.
-Какой из принципов IaaC является основополагающим?
+Сценарий выполнения задачи:
+создайте свой репозиторий на https://hub.docker.com;
+выберите любой образ, который содержит веб-сервер Nginx;
+создайте свой fork образа;
+реализуйте функциональность: запуск веб-сервера в фоне с индекс-страницей, содержащей HTML-код ниже:
+<html>
+<head>
+Hey, Netology
+</head>
+<body>
+<h1>I’m DevOps Engineer!</h1>
+</body>
+</html>
+Опубликуйте созданный fork в своём репозитории и предоставьте ответ в виде ссылки на https://hub.docker.com/username_repo.
 
-Решение 1
-IaaC-паттерны (Infrastructure as Code) - это подход к управлению инфраструктурой, при котором ее создание и настройка осуществляются с помощью программного кода. 
-Можно выделить следующие основные преимущества применения IaaC-паттернов: автоматизация, контроль версий, разбиение инфраструктуры на составные части, быстрое создание и уничтожение инфраструктуры,  безопасное управлением инфраструктурой.
-Основополагающим принципом IaaC (Infrastructure as Code) является автоматизация процессов создания, настройки и управления инфраструктурой через код. Этот принцип позволяет достичь быстроты, надежности и единообразия в работе с инфраструктурой, а также уменьшить риск ошибок.
+Решение 1.
+https://hub.docker.com/repository/docker/shoonia69/custom-nginx/general
 
 Задача 2
-Чем Ansible выгодно отличается от других систем управление конфигурациями?
-Какой, на ваш взгляд, метод работы систем конфигурации более надёжный — push или pull?
+Посмотрите на сценарий ниже и ответьте на вопрос: «Подходит ли в этом сценарии использование Docker-контейнеров или лучше подойдёт виртуальная машина, физическая машина? Может быть, возможны разные варианты?»
+Детально опишите и обоснуйте свой выбор.
+--
+Сценарий:
+высоконагруженное монолитное Java веб-приложение;
+Nodejs веб-приложение;
+мобильное приложение c версиями для Android и iOS;
+шина данных на базе Apache Kafka;
+Elasticsearch-кластер для реализации логирования продуктивного веб-приложения — три ноды elasticsearch, два logstash и две ноды kibana;
+мониторинг-стек на базе Prometheus и Grafana;
+MongoDB как основное хранилище данных для Java-приложения;
+Gitlab-сервер для реализации CI/CD-процессов и приватный (закрытый) Docker Registry.
 
-Решение 2
-Ansible выгодно отличается от других систем управления конфигурациями по несмкольким причинам:
-- Он написан на простом универсальном языке Python
-- Использует push метод работы. Благодаря этому не требуется устанавливать дополнительные агенты на целевые хосты, а достаточно всего ssh соединения.
-Метод push по моему мнению является более надежным и простым. Как уже было написано выше, он не требует установки агента, следовательно минимизируется риск отказа ПО со стороны целевого хоста.
+Решение 2.
+высоконагруженное монолитное Java веб-приложение - считаю, что не подойдет. Потому что, монолитное приложение содержит в себе множество компонентов, в рамках контейнера это может быть затруднительно реализовать. Стоит рассмотреть использование паравиртуализации или физических машин.
+Nodejs веб-приложение - контейнеризация может подойти при разработке самого приложения и его использваонии.
+мобильное приложение c версиями для Android и iOS - считаю, что удобно использовать контейнеризацию при разработке приложений. Есть возможность собирать разные версии и сборки для последующего тестирования.
+шина данных на базе Apache Kafka - является высоконагруженым и ресурсоемким приложение, состоящим из большого количества компонетов. Считаю, что контейнеризация не подходит для реализации данной технологии, лучше использовать физические сервера или паравиртуализацию.
+Elasticsearch-кластер для реализации логирования продуктивного веб-приложения — три ноды elasticsearch, два logstash и две ноды kibana - можно использовать контейнеризацию, kibana является веб приложением, Elasticsearch можно также развернуть в контейнере с привязкой базы данных на физическом хосте. Есть необходимые контейнеры в репозитории Docker.
+мониторинг-стек на базе Prometheus и Grafana - считаю что данный варинат вполне возможно выполнить посредством контейнеризации с настройкой хранения логов на внешней БД.
+MongoDB как основное хранилище данных для Java-приложения - MongoDB есть официальный контейнер в репозитории, можно использовать в свяке с другими контейнерами. Такой варинат вполне подходит для реализации путем контейнеров.
+Gitlab-сервер для реализации CI/CD-процессов и приватный (закрытый) Docker Registry - в данном случае я бы использовал виртуализацию или физические сервера. Проще возможности бэкапирования, меньше риска потери данных из Gitlab сервера.
 
 Задача 3
-Установите на личный компьютер:
-VirtualBox,
-Vagrant,
-Terraform,
-Ansible.
-Приложите вывод команд установленных версий каждой из программ, оформленный в Markdown.
+Запустите первый контейнер из образа centos c любым тегом в фоновом режиме, подключив папку /data из текущей рабочей директории на хостовой машине в /data контейнера.
+Запустите второй контейнер из образа debian в фоновом режиме, подключив папку /data из текущей рабочей директории на хостовой машине в /data контейнера.
+Подключитесь к первому контейнеру с помощью docker exec и создайте текстовый файл любого содержания в /data.
+Добавьте ещё один файл в папку /data на хостовой машине.
+Подключитесь во второй контейнер и отобразите листинг и содержание файлов в /data контейнера.
+
 Решение 3
+Список команд для выполнения задания
 ```
-[mailo@fedora netology]$ vagrant --version
-Vagrant 2.3.4
-[mailo@fedora netology]$ terraform --version
-Terraform v1.4.6
-on linux_amd64
-[mailo@fedora netology]$ ansible --version
-ansible [core 2.14.5]
-  config file = /home/mailo/vms/netology/ansible.cfg
-  configured module search path = ['/home/mailo/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
-  ansible python module location = /home/mailo/.local/lib/python3.11/site-packages/ansible
-  ansible collection location = /home/mailo/.ansible/collections:/usr/share/ansible/collections
-  executable location = /home/mailo/.local/bin/ansible
-  python version = 3.11.3 (main, Apr  5 2023, 00:00:00) [GCC 13.0.1 20230401 (Red Hat 13.0.1-0)] (/usr/bin/python3)
-  jinja version = 3.1.2
-  libyaml = True
-[mailo@fedora netology]$ vboxmanage --version
-7.0.8r156879
-```
-Задача 4
-Воспроизведите практическую часть лекции самостоятельно.
-Создайте виртуальную машину.
-Зайдите внутрь ВМ, убедитесь, что Docker установлен с помощью команды docker ps
-
-Решение 4
-```
-[mailo@fedora netology]$ vagrant ssh
-Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.4.0-144-generic x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-  System information as of Wed 17 May 2023 06:34:55 PM UTC
-
-  System load:  0.12               Users logged in:          1
-  Usage of /:   13.4% of 30.34GB   IPv4 address for docker0: 172.17.0.1
-  Memory usage: 24%                IPv4 address for eth0:    10.0.2.15
-  Swap usage:   0%                 IPv4 address for eth1:    192.168.56.11
-  Processes:    161
-
-
-This system is built by the Bento project by Chef Software
-More information can be found at https://github.com/chef/bento
-Last login: Wed May 17 18:33:54 2023
-vagrant@server1:~$ docker ps
+[root@ps-cent-n ~]# docker run -d centos sleep infinity
+bb526762a08ae51a779c53683b64b3cef1210e2c1a15c6443c6cb11465a53341
+[root@ps-cent-n ~]#
+[root@ps-cent-n ~]#
+[root@ps-cent-n ~]# docker ps
+CONTAINER ID   IMAGE     COMMAND            CREATED         STATUS         PORTS     NAMES
+bb526762a08a   centos    "sleep infinity"   3 seconds ago   Up 2 seconds             recursing_pasteur
+[root@ps-cent-n ~]# docker stop recursing_pasteur
+recursing_pasteur
+[root@ps-cent-n ~]# docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
-vagrant@server1:~$ 
+[root@ps-cent-n ~]# clear
+[root@ps-cent-n ~]# docker run -d -v /data:/data centos sleep infinity
+6558adc68dda5bbb6230cd641a09ac66c13126560d44ef98b6c3150335b8ba2d
+[root@ps-cent-n ~]# docker ps
+CONTAINER ID   IMAGE     COMMAND            CREATED         STATUS         PORTS     NAMES
+6558adc68dda   centos    "sleep infinity"   3 seconds ago   Up 2 seconds             flamboyant_hofstadter
+[root@ps-cent-n ~]# docker run -d -v /data:/data debian sleep infinity
+1ae6dbc6c7d7b4c141ac6fc9aa0272c7c2f0e1c25baeb2da0087d74367d54169
+[root@ps-cent-n ~]# docker ps
+CONTAINER ID   IMAGE     COMMAND            CREATED          STATUS          PORTS     NAMES
+1ae6dbc6c7d7   debian    "sleep infinity"   4 seconds ago    Up 3 seconds              gracious_lalande
+6558adc68dda   centos    "sleep infinity"   34 seconds ago   Up 34 seconds             flamboyant_hofstadter
+[root@ps-cent-n ~]# docker exec -it flamboyant_hofstadter bash
+[root@6558adc68dda /]# ls /data
+[root@6558adc68dda /]# touch /data/file-from-centos-cont
+[root@6558adc68dda /]# ls /data
+file-from-centos-cont
+[root@6558adc68dda /]# exit
+exit
+[root@ps-cent-n ~]# touch /data/file-from-host
+[root@ps-cent-n ~]# docker exec -it gracious_lalande bash
+root@1ae6dbc6c7d7:/# ls /data
+file-from-centos-cont  file-from-host
+root@1ae6dbc6c7d7:/#
 ```
+
+Задача 4 (*)
+Воспроизведите практическую часть лекции самостоятельно.
+Соберите Docker-образ с Ansible, загрузите на Docker Hub и пришлите ссылку вместе с остальными ответами к задачам.
+
+Решение 4.
+Собрать образ по докерфайлу из задания не получилось.
+Собрал свой, за основу взят fedora:latest.
+По ссылке доступен контейнер с утановленным Ansible.
+Не совсем понимаю как используется параметр CMD в докерфайле. При сборке все происходит штатно, но контейнер с аргументом CMD  [ "ansible-playbook", "--version" ] выдает ошибку при старте 
+```
+docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: exec: "ansible": executable file not found in $PATH: unknown.
+```
+Поэтому в сборке  по ссылке он не использовался в файде Dockerfile.
+https://hub.docker.com/repository/docker/shoonia69/fedora-ansible/general
