@@ -127,3 +127,16 @@ memory = 4
 core_fraction = 5
 }
 }
+
+
+variable "env" {
+  default     = "develop"
+}
+
+variable "project" {
+  default     = "platform"
+}
+
+variable "role" {
+   default = ["web", "db"]
+}

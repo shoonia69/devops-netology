@@ -1,4 +1,4 @@
-locals {
-  web = "${var.vm_web_name}"
-  db = "${var.vm_db_name}"
+locals { 
+  web = "netology–${ var.env }–${ var.project }–${ var.role[0] }"
+  db = "netology–${ var.env }–${ var.project }–${ var.role[1] }"
 }
