@@ -25,8 +25,9 @@ Error: Error while requesting API to create instance: server-request-id = 467730
 2. Объявите нужные переменные в файле variables.tf, обязательно указывайте тип переменной. Заполните их **default** прежними значениями из main.tf. 
 3. Проверьте terraform plan (изменений быть не должно).
 
-   Ответ:
-   https://github.com/shoonia69/devops-netology/blob/terraform-02/src/variables.tf
+   [Ссылка на variables.tf](https://github.com/shoonia69/devops-netology/blob/terraform-02/src/variables.tf)
+   ![Screenshot 2023-06-18 152920](https://github.com/shoonia69/devops-netology/assets/102481493/c9b70249-667b-4164-88f6-968453d2b2cd)
+
 
 ### Задание 3
 
@@ -34,8 +35,7 @@ Error: Error while requesting API to create instance: server-request-id = 467730
 2. Скопируйте блок ресурса и создайте с его помощью вторую ВМ(в файле main.tf): **"netology-develop-platform-db"** ,  cores  = 2, memory = 2, core_fraction = 20. Объявите ее переменные с префиксом **vm_db_** в том же файле('vms_platform.tf').
 3. Примените изменения.
 
-    Ответ:
-   https://github.com/shoonia69/devops-netology/blob/terraform-02/src/vms_platform.tf
+    [Ответ:](https://github.com/shoonia69/devops-netology/blob/terraform-02/src/vms_platform.tf)
 
 ### Задание 4
 
@@ -55,8 +55,7 @@ vm_external_ip_address_web = "51.250.12.1"
 2. Замените переменные с именами ВМ из файла variables.tf на созданные вами local переменные.
 3. Примените изменения.
 
-    Ответ:
-   https://github.com/shoonia69/devops-netology/blob/terraform-02/src/locals.tf
+    [Ссылка на locals.tf](https://github.com/shoonia69/devops-netology/blob/terraform-02/src/locals.tf)
 
 ### Задание 6
 
@@ -64,6 +63,8 @@ vm_external_ip_address_web = "51.250.12.1"
 2. Так же поступите с блоком **metadata {serial-port-enable, ssh-keys}**, эта переменная должна быть общая для всех ваших ВМ.
 3. Найдите и удалите все более не используемые переменные проекта.
 4. Проверьте terraform plan (изменений быть не должно).
+   ![Screenshot 2023-06-18 153117](https://github.com/shoonia69/devops-netology/assets/102481493/c81bb7f8-6b56-487c-8c24-5f85ca3ed7a6)
+
 
 ### Правила приема работы
 
