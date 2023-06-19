@@ -63,7 +63,8 @@ vm_external_ip_address_web = "51.250.12.1"
 2. Так же поступите с блоком **metadata {serial-port-enable, ssh-keys}**, эта переменная должна быть общая для всех ваших ВМ.
 3. Найдите и удалите все более не используемые переменные проекта.
 4. Проверьте terraform plan (изменений быть не должно).
-   ![Screenshot 2023-06-18 153117](https://github.com/shoonia69/devops-netology/assets/102481493/c81bb7f8-6b56-487c-8c24-5f85ca3ed7a6)
+  ![image](https://github.com/shoonia69/devops-netology/assets/102481493/327f9937-4ed8-4d7f-ad2c-c7995873d853)
+
 
 
 ### Правила приема работы
