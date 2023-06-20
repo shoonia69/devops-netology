@@ -26,7 +26,9 @@ Error: Error while requesting API to create instance: server-request-id = 467730
 3. Проверьте terraform plan (изменений быть не должно).
 
    [Ссылка на variables.tf](https://github.com/shoonia69/devops-netology/blob/terraform-02/src/variables.tf)
-   ![Screenshot 2023-06-18 152920](https://github.com/shoonia69/devops-netology/assets/102481493/c9b70249-667b-4164-88f6-968453d2b2cd)
+   
+   ![image](https://github.com/shoonia69/devops-netology/assets/102481493/c75567eb-eda2-459a-b11b-550a9f1dd971)
+
 
 
 ### Задание 3
