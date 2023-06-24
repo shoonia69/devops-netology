@@ -37,7 +37,16 @@ resource "yandex_compute_instance" "web-vm" {
   }
   allow_stopping_for_update = true
 
- 
+  metadata = {
+    serial-port-enable = 1
+    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
+  }
+
+variable "vms_ssh_root_key" {
+  type        = string
+  default     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILuiAAX7bepyVM9Y6PKnH5g6bbP1NzwT5SpscGqpgmaz mailo@DESKTOP-D2OQD34"
+  description = "ssh-keygen -t ed25519"
+}
 
 
 }
